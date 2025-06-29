@@ -2,13 +2,11 @@
 /* Basic */
 /* ============================================================= */
 
-html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   overflow-x: hidden;
@@ -21,7 +19,7 @@ body {
   background: lightgray;
 }
 
-::-webkit-scrollbar { /* width */
+::-webkit-scrollbar { 
   width: 0;
 }
 ::-webkit-scrollbar-track { /* Track */
@@ -74,12 +72,18 @@ body {
 
 .about { 
   display: block;
-  padding-top: 20px; 
+  padding-top: 140px; 
+  width: 740px;
 }
 
 .about-btn-tv {
   display: block; 
   margin: auto;
+}
+
+.about-btn-tv:hover {
+  background: blue;
+  color: yellow;
 }
 
 .about-img-arena {
@@ -118,6 +122,9 @@ body {
   border: none;
 }
 
+.fig_info {
+  width: 400px;
+}
 
 /* ============================================================= */
 /* API: Block */

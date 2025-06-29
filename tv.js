@@ -146,7 +146,7 @@ function renderChannel(slug, page) {
                       return `
                       <img class="Block_img" src="${block.image.large.url}"/>
                       <img class="Block_img noise" src="img/noise.gif">
-                      <p class="Block_text">${block.description}</p>
+                      <p class="Block_description">${block.description}</p>
                       <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
                       

@@ -247,10 +247,38 @@ video {
   font-size: var(--TVfont-size);
   color: white;
   text-shadow: 0 0px 6px black;
+  text-align: center;
   /* mix-blend-mode: difference; */
   /* filter:invert(1); */
 }
 
+
+/* ============================================================= */
+/* API: Block Description */
+/* ============================================================= */
+
+.Block_description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 92%;
+  height: 155px;
+  padding: 4px 0 0 9px;
+  overflow: scroll;
+  z-index:10;
+
+  word-wrap: break-word;
+  font-family: var(--TVfont-family);
+  font-size: var(--TVfont-size);
+  color: white;
+  text-shadow: 0 0px 6px black;
+  text-align: center;
+  /* mix-blend-mode: difference; */
+  /* filter:invert(1); */
+}
 
 
 /* ============================================================= */

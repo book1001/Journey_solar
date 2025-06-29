@@ -1,10 +1,12 @@
 <!doctype html>
 <html>
 <head>
-  <title>☀︎</title>
+  <title>⠀</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='white'>☀︎</text></svg>">
+
   <base target="_blank">
   
   <!--  This is for routing  -->
@@ -21,14 +23,14 @@
   <!-- Info -->
   <!-- ======================================================= -->
   <a class="info" href="https://leehalim.com">
-    Solarpanel.scrapthe.world
+    solarpanel.scrapthe.world
   </a>
   <a class="info_r" style="" href="https://leehalim.com">
     Halim Lee | leehalim.com
   </a>
   <img id="lalaland_img" src="img_info/panel_1.png">
   <audio id="lalaland" autoplay loop src="sound/lalaland.mp3"></audio>
-  <audio id="tvOn" autoplay loop src="sound/tvon.mp3"></audio>
+  <audio id="tvOn" autoplay src="sound/tvon.mp3"></audio>
 
   <!-- <video id="lalaland" src="img_info/lalaland.mp4"></video> -->
   
@@ -38,11 +40,27 @@
   <!-- ======================================================= -->
   <div class="about">
     <!-- <button class="about-btn-tv" onclick="openWin('https://solarpanel1.glitch.me', '✴︎✴︎', 300, 344)">Solar Power</button> -->
-    <button id="bgOn" class="about-btn-tv" onclick="openWin('tv_node.html', '✴︎✴︎', 300, 344)">☀︎</button>
+    <button id="bgOn" class="about-btn-tv" onclick="openWin('tv.html', '✴︎✴︎', 300, 344)">☀︎</button>
 
-    The guy<br><br>
-    <video autoplay loop src="img_info/theguy_in.mp4" style="width: 400px;"></video>
+    <br><br>
+    <figure>
+      <video class="video_info fig_info" autoplay mute loop src="img_info/theguy_in.mp4"></video>
+      <!-- <figcaption>The guy</figcaption> -->
+    </figure>
+    
     <br>
+
+    <figure>
+      <img src="img_info/panel_1.png" class="fig_info">
+      <!-- <figcaption>The guy</figcaption> -->
+    </figure>
+
+    <figure>
+      <img src="img_info/panel_2.png" class="fig_info">
+      <!-- <figcaption>The guy</figcaption> -->
+    </figure>
+
+
     <a href="https://www.are.na/halim-lee/fcumona-4ui" target="_blank">are.na</a>
 
     <!-- Welcome to are.na TV<br> 
@@ -80,20 +98,40 @@
   <!-- JS -->
   <!-- ======================================================= -->
    <script>
-    const button = document.getElementById('bgOn');
+      const button = document.getElementById('bgOn');
+      const lalalandImg = document.getElementById('lalaland_img');
+      const lalaland = document.getElementById('lalaland');
+      const tvOn = document.getElementById('tvOn');
 
-    const lalalandImg = document.getElementById('lalaland_img');
-    const lalaland = document.getElementById('lalaland');
-    const tvOn = document.getElementById('tvOn');
+      // video_info > auto play
+      window.addEventListener('DOMContentLoaded', () => {
+        const videoInfos = document.querySelectorAll('video.video_info');
+        videoInfos.forEach(video => {
+          video.muted = true; 
+          video.play().catch(e => {
+            console.warn('auto play not working:', e);
+          });
+        });
+      });
 
-    button.addEventListener('click', () => {
-      lalalandImg.style.display = 'block';
-      lalaland.loop = true; 
-      lalaland.play();
-      // lalaland.muted = true;
-      tvOn.play();
-      tvOn.loop = false; 
-    });
+      // btn > bg
+      button.addEventListener('click', () => {
+        lalalandImg.style.display = 'block';
+        lalaland.loop = true; 
+        lalaland.play();
+        tvOn.play();
+        tvOn.loop = false; 
+      });
+
+      // btn > Favicon
+      button.addEventListener('click', () => {
+        const yellowFavicon = "data:image/svg+xml," +
+          "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>" +
+          "<text y='0.9em' font-size='90' fill='yellow'>☀︎</text></svg>";
+
+        const favicon = document.getElementById('favicon');
+        favicon.href = yellowFavicon;
+      });
   </script>
 
   <script type="text/javascript" src="index.js"></script>
