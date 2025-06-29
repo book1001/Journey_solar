@@ -72,7 +72,7 @@ body {
 
 .about { 
   display: block;
-  padding-top: 140px; 
+  padding: 140px 0 100px 0; 
   width: 740px;
 }
 
