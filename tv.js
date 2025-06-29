@@ -138,7 +138,7 @@ function renderChannel(slug, page) {
                       return `
                       <img class="Block_img" src="img/noise.gif">
                       <p class="Block_text">${block.content}</p>
-                      <audio autoplay src="sound/tvon.mp3"></audio>
+                      <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
 
                     // basic: image
@@ -146,6 +146,7 @@ function renderChannel(slug, page) {
                       return `
                       <img class="Block_img" src="${block.image.large.url}"/>
                       <img class="Block_img noise" src="img/noise.gif">
+                      <p class="Block_text">${block.description}</p>
                       <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
                       

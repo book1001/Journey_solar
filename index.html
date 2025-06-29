@@ -26,7 +26,10 @@
   <a class="info_r" style="" href="https://leehalim.com">
     Halim Lee | leehalim.com
   </a>
-  <img id="lalaland" src="img_info/panel_1.png">
+  <img id="lalaland_img" src="img_info/panel_1.png">
+  <audio id="lalaland" autoplay loop src="sound/lalaland.mp3"></audio>
+  <audio id="tvOn" autoplay loop src="sound/tvon.mp3"></audio>
+
   <!-- <video id="lalaland" src="img_info/lalaland.mp4"></video> -->
   
 
@@ -76,25 +79,22 @@
   <!-- ======================================================= -->
   <!-- JS -->
   <!-- ======================================================= -->
-  <script>
+   <script>
     const button = document.getElementById('bgOn');
-    const video = document.getElementById('lalaland');
+
+    const lalalandImg = document.getElementById('lalaland_img');
+    const lalaland = document.getElementById('lalaland');
+    const tvOn = document.getElementById('tvOn');
 
     button.addEventListener('click', () => {
-      video.style.display = 'block';  
+      lalalandImg.style.display = 'block';
+      lalaland.loop = true; 
+      lalaland.play();
+      // lalaland.muted = true;
+      tvOn.play();
+      tvOn.loop = false; 
     });
   </script>
-   <!-- <script>
-    const button = document.getElementById('bgOn');
-    const video = document.getElementById('lalaland');
-
-    button.addEventListener('click', () => {
-      video.style.display = 'block';  
-      video.loop = true; 
-      video.muted = true;
-      video.play();
-    });
-  </script> -->
 
   <script type="text/javascript" src="index.js"></script>
 
