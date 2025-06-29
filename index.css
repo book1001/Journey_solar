@@ -1,0 +1,144 @@
+/* ============================================================= */
+/* Basic */
+/* ============================================================= */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 13px;
+  text-align: center;
+  color: #333;
+  background: lightgray;
+}
+
+::-webkit-scrollbar { /* width */
+  width: 0;
+}
+::-webkit-scrollbar-track { /* Track */
+  background: transparent;
+}
+::-webkit-scrollbar-thumb { /* Handle */
+  background: transparent;
+  background-clip: padding-box;
+  border-top: 0px solid transparent;
+  border-right: var(--scrollbar-right) solid transparent;
+  border-bottom: 0px solid transparent;
+  border-left: var(--scrollbar-left) solid transparent;
+}
+
+
+
+/* ============================================================= */
+/* Info */
+/* ============================================================= */
+.info {
+  position: fixed; 
+  top: 10px; 
+  left: 10px; 
+  font-weight: normal;
+  color: black;
+}
+
+.info_r {
+  position: fixed; 
+  top: 10px; 
+  right: 10px; 
+  font-weight: normal;
+  color: black;
+}
+
+#lalaland {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  /* filter: sepia(1); */
+  filter: grayscale(100%);
+}
+
+/* ============================================================= */
+/* About */
+/* ============================================================= */
+
+.about { 
+  display: block;
+  padding-top: 20px; 
+}
+
+.about-btn-tv {
+  display: block; 
+  margin: auto;
+}
+
+.about-img-arena {
+  display:block; 
+  margin: auto; 
+  width: 250px; 
+  height: auto; 
+  border: 1px solid gray;
+}
+
+
+/* ============================================================= */
+/* API: container */
+/* ============================================================= */
+
+.ARENA-container {
+  /* display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 5% 70% 25%; 
+  grid-template-rows: 10% 80% 10%; 
+  gap: 0px 0px;  */
+
+  place-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 205px;
+  height: 155px;
+  margin: 0;
+  padding: 0;
+  -webkit-transform: translate(-50%, -80%); /* Safari */
+  -moz-transform: translate(-50%, -80%); /* Firefox */
+  -ms-transform: translate(-50%, -80%); /* IE 9 */
+  -o-transform: translate(-50%, -80%); /* Opera */
+  transform: translate(-50%, -80%);
+  border: none;
+}
+
+
+/* ============================================================= */
+/* API: Block */
+/* ============================================================= */
+
+.Block {
+  padding: 0;
+  color: #000000;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+
+.Block_log {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  word-wrap: break-word;
+
+  font-family: Menlo;
+  font-size: 12px;
+  color: white;
+}

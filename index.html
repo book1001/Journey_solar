@@ -1,1 +1,102 @@
+<!doctype html>
+<html>
+<head>
+  <title>☀︎</title>
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <base target="_blank">
+  
+  <!--  This is for routing  -->
+  <script src="//unpkg.com/navigo"></script>
+  
+  <!-- css -->
+  <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index_media.css">
+</head>
+
+<body>
+  <!-- ======================================================= -->
+  <!-- Info -->
+  <!-- ======================================================= -->
+  <a class="info" href="https://leehalim.com">
+    Solarpanel.scrapthe.world
+  </a>
+  <a class="info_r" style="" href="https://leehalim.com">
+    Halim Lee | leehalim.com
+  </a>
+  <img id="lalaland" src="img_info/panel_1.png">
+  <!-- <video id="lalaland" src="img_info/lalaland.mp4"></video> -->
+  
+
+  <!-- ======================================================= -->
+  <!-- About -->
+  <!-- ======================================================= -->
+  <div class="about">
+    <!-- <button class="about-btn-tv" onclick="openWin('https://solarpanel1.glitch.me', '✴︎✴︎', 300, 344)">Solar Power</button> -->
+    <button id="bgOn" class="about-btn-tv" onclick="openWin('tv_node.html', '✴︎✴︎', 300, 344)">☀︎</button>
+
+    The guy<br><br>
+    <video autoplay loop src="img_info/theguy_in.mp4" style="width: 400px;"></video>
+    <br>
+    <a href="https://www.are.na/halim-lee/fcumona-4ui" target="_blank">are.na</a>
+
+    <!-- Welcome to are.na TV<br> 
+    This website builds community TV channels based on Are.na<br><br>
+
+    <button class="about-btn-tv" onclick="openWin('tv.html', '✴︎✴︎', 300, 344)">are.na TV</button>
+    <br><br><br>
+
+    Feel free to upload your favorite videos, audio, images, or text <a href="https://www.are.na/halim-lee/are-natv" target="_blank">here</a><br>
+    Your content will be broadcast on are.na TV<br><br><br>
+    <a href="https://www.are.na/halim-lee/are-natv" target="_blank">
+      <img class="about-img-arena" src="img/about_arena.png">
+    </a>
+    <br><br>
+    
+    YouTube and Vimeo are currently experiencing bad reception.<br>
+    I would recommend uploading MP4 or MP3 files instead.<br>
+    <br><br><br>
+
+    ✴︎✴︎
+    <br><br>
+    In progress — mobile device remote control changing are.na TV channels -->
+  </div>
+
+
+
+  <!-- ======================================================= -->
+  <!-- API: logs -->
+  <!-- ======================================================= -->
+  <!-- <div class="ARENA-container"></div> -->
+
+
+
+  <!-- ======================================================= -->
+  <!-- JS -->
+  <!-- ======================================================= -->
+  <script>
+    const button = document.getElementById('bgOn');
+    const video = document.getElementById('lalaland');
+
+    button.addEventListener('click', () => {
+      video.style.display = 'block';  
+    });
+  </script>
+   <!-- <script>
+    const button = document.getElementById('bgOn');
+    const video = document.getElementById('lalaland');
+
+    button.addEventListener('click', () => {
+      video.style.display = 'block';  
+      video.loop = true; 
+      video.muted = true;
+      video.play();
+    });
+  </script> -->
+
+  <script type="text/javascript" src="index.js"></script>
+
+</body>
+</html>
