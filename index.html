@@ -5,7 +5,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='white'>☀︎</text></svg>">
+  <link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='white'>☼</text></svg>">
 
   <base target="_blank">
   
@@ -36,7 +36,7 @@
     Halim Lee | leehalim.com
   </a>
   <img id="lalaland_img" src="img_info/panel_5.png">
-  <audio id="lalaland" autoplay loop src="sound/lalaland.mp3"></audio>
+  <!-- <audio id="lalaland" autoplay loop src="sound/lalaland.mp3"></audio> -->
   <audio id="tvOn" autoplay src="sound/tvon.mp3"></audio>
 
   <!-- <video id="lalaland" src="img_info/lalaland.mp4"></video> -->
@@ -47,7 +47,8 @@
   <!-- ======================================================= -->
   <div class="about">
     <!-- <button class="about-btn-tv" onclick="openWin('https://solarpanel1.glitch.me', '✴︎✴︎', 300, 344)">Solar Power</button> -->
-    <button id="bgOn" class="about-btn-tv" onclick="openWin('tv_node.html', '✴︎✴︎', 300, 344)">☀︎</button>
+    <button id="bgOn" class="about-btn-tv" onclick="openWin('tv_node.html', '✴︎', 300, 344)">☀︎ TV</button>
+    <button class="about-btn-tv" onclick="openDvd('dvd.html', '✴︎✴', 820, 620)">Burn my DVD</button>
     <br>
     <a href="https://www.are.na/halim-lee/fcumona-4ui" target="_blank">are.na</a>
 
@@ -157,8 +158,8 @@
       button.addEventListener('click', () => {
         document.body.style.background = 'lemonchiffon';
         // lalalandImg.style.display = 'block';
-        lalaland.loop = true; 
-        lalaland.play();
+        // lalaland.loop = true; 
+        // lalaland.play();
         tvOn.play();
         tvOn.loop = false; 
       });
