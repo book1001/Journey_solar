@@ -71,6 +71,7 @@ function btnPageCounter() {
 }
 
 let isAutoFlipping = false; // 토글 상태 저장
+let autoFlipTimeout = null;
 
 function btnPages() {
   const paginationContainer = document.querySelector('.btn-pages');
@@ -129,7 +130,7 @@ function btnPages() {
         }
 
         if (isAutoFlipping) {
-          setTimeout(autoFlipOnce, delay);
+          autoFlipTimeout = setTimeout(autoFlipOnce, delay);
         }
 
         });
@@ -140,6 +141,11 @@ function btnPages() {
       isAutoFlipping = false;
       playButton.classList.remove('playing');
       if (lalaland) lalaland.pause();
+
+      if (autoFlipTimeout) {
+        clearTimeout(autoFlipTimeout); // 자동 넘김 중단
+        autoFlipTimeout = null;
+      }
     }
   });
 
@@ -169,61 +175,128 @@ function btnPages() {
 // TV: play music + lyrics
 // =============================================================
 
-  const lyrics = [
-    { time: 0.1, text: "(instrumental break)" },
-    { time: 8.0, text: "Bab-bbapp-bbara" },
-    // { time: 9.0, text: "bab-bbab-bbab-bbabba" },
-    // { time: 10.0, text: "Bab-bbapp-bbara" },
-    // { time: 11.0, text: "bab-bbab-bbab-bbabba" },
-    // { time: 12.0, text: "Bab-bbapp-bbara" },
-    // { time: 13.0, text: "bab-bbab-bbab-bbabba" },
-    // { time: 14.0, text: "Bab-bbapp-bbara" },
-    { time: 16.0, text: "I think about that day" },
-    { time: 18.0, text: "He left me in my room" },
-    { time: 19.0, text: "closing the door" },
-    { time: 20.0, text: "with the light" },
-    { time: 21.0, text: "We were caught off guard" },
-    { time: 23.0, text: "but he was sweet" },
-    { time: 24.0, text: "and it was true" },
-    { time: 25.0, text: "Still I did what I had to do" },
-    { time: 29.0, text: "'Cause I just knew" },
+  const rawLyrics = [
+    { time: "0:01", text: "(instrumental break)" },
+    { time: "0:08", text: "Bab-bbapp-bbara" },
+    
+    { time: "0:15", text: "I think about that day" },
+    { time: "0:17", text: "He left me in my room" },
+    { time: "0:19", text: "closing the door" },
+    { time: "0:20", text: "with the light" },
+    { time: "0:21", text: "We were caught off guard" },
+    { time: "0:23", text: "but he was sweet" },
+    { time: "0:24", text: "and it was true" },
+    { time: "0:25", text: "Still I did what I had to do" },
+    { time: "0:29", text: "Cause I just knew" },
 
-    { time: 31.0, text: "Summer Sunday nights" },
-    { time: 33.0, text: "I’d sink into my bed" },
-    { time: 34.0, text: "Right as they" },
-    { time: 35.0, text: "dimmed out all the lights" },
-    { time: 37.0, text: "A Technicolor" },
-    { time: 38.0, text: "world made out of" },
-    { time: 39.0, text: "music and machine" },
-    { time: 40.0, text: "It called me to be" },
-    { time: 41.0, text: "on that screen" },
-    { time: 44.0, text: "And live inside each scene" },
+    { time: "0:31", text: "Summer Sunday nights" },
+    { time: "0:33", text: "I’d sink into my bed" },
+    { time: "0:34", text: "Right as they" },
+    { time: "0:35", text: "dimmed out all the lights" },
+    { time: "0:36", text: "A Technicolor" },
+    { time: "0:38", text: "world made out of" },
+    { time: "0:39", text: "music and machine" },
+    { time: "0:40", text: "It called me to be" },
+    { time: "0:41", text: "on that screen" },
+    { time: "0:44", text: "And live inside each scene" },
 
-    { time: 46.0, text: "Without even sun came up" },
-    { time: 48.0, text: "Hopped a bus, here I came" },
-    { time: 50.0, text: "Could be brave or just insane" },
-    { time: 52.0, text: "We'll have to see" },
-    { time: 54.0, text: "'Cause maybe in that sleepy town" },
-    { time: 56.0, text: "He'll sit one day," },
-    { time: 57.0, text: "the lights are down" },
-    { time: 58.0, text: "He'll see my face and" },
-    { time: 59.0, text: "think of how" },
-    { time: 100.0, text: "he used to know me" },
-    { time: 101.0, text: "Behind these hills" },
-    { time: 103.0, text: "I'm reaching for the heights" },
-    { time: 105.0, text: "And chasing all the" },
-    { time: 106.0, text: "lights that shine" },
-    { time: 109.0, text: "And when they let you down" },
-    { time: 112.0, text: "(it's another day)" },
-    { time: 113.0, text: "You'll get up off the ground" },
-    { time: 116.0, text: "(it's another day)" },
-    { time: 117.0, text: "'Cause morning rolls around" },
-    { time: 119.0, text: "and it's another day of sun" },
-    { time: 300.0, text: "" },
-    { time: 300.0, text: "" },
-    { time: 300.0, text: "" },
-    { time: 300.0, text: "" },
+    { time: "0:46", text: "Without even sun came up" },
+    { time: "0:48", text: "Hopped a bus, here I came" },
+    { time: "0:50", text: "Could be brave" },
+    { time: "0:51", text: "or just insane" },
+    { time: "0:52", text: "We'll have to see" },
+    { time: "0:53", text: "Cause maybe in that" },
+    { time: "0:54", text: "sleepy town" },
+    { time: "0:55", text: "He'll sit one day," },
+    { time: "0:56", text: "the lights are down" },
+    { time: "0:57", text: "He'll see my face" },
+    { time: "0:58", text: "and think of" },
+    { time: "0:59", text: "how he used to know me" },
+
+    { time: "1:01", text: "Behind these hills" },
+    { time: "1:03", text: "I'm reaching for the heights" },
+    { time: "1:05", text: "And chasing all the" },
+    { time: "1:06", text: "lights that shine" },
+    { time: "1:09", text: "And when they" },
+    { time: "1:10", text: "let you down" },
+    { time: "1:12", text: "(it's another day)" },
+    { time: "1:13", text: "You'll get up off the ground" },
+    { time: "1:15", text: "(it's another day)" },
+    { time: "1:16", text: "Cause morning" },
+    { time: "1:17", text: "rolls around" },
+    { time: "1:19", text: "and it's another day of sun" },
+
+    { time: "1:24", text: "I hear 'em everyday" },
+    { time: "1:26", text: "The rhythms" },
+    { time: "1:27", text: "in the canyons" },
+    { time: "1:28", text: "that'll never fade away" },
+    { time: "1:30", text: "The ballads in the barrooms" },
+    { time: "1:31", text: "left by" },
+    { time: "1:32", text: "those who came before" },
+    { time: "1:33", text: "They say," },
+    { time: "1:34", text: "You gotta want it more" },
+    { time: "1:37", text: "So I bang on every door" },
+    { time: "1:39", text: "And even when the answer's" },
+    { time: "1:40", text: "No, or when" },
+    { time: "1:41", text: "my money's running low" },
+    { time: "1:43", text: "The dusty mic" },
+    { time: "1:44", text: "and neon glow" },
+    { time: "1:45", text: "Are all I need" },
+    { time: "1:47", text: "And someday" },
+    { time: "1:48", text: "as I sing a song" },
+    { time: "1:49", text: "A small-town kid'll" },
+    { time: "1:50", text: "come along" },
+    { time: "1:51", text: "That'll be the thing" },
+    { time: "1:52", text: "to push him on and go go" },
+
+    { time: "1:55", text: "Behind these hills" },
+    { time: "1:56", text: "I'm reaching for the heights" },
+    { time: "1:58", text: "And chasing all the" },
+    { time: "1:59", text: "lights that shine" },
+    { time: "2:02", text: "And when they" },
+    { time: "2:03", text: "let you down" },
+    { time: "2:05", text: "(it's another day)" },
+    { time: "2:06", text: "You'll get up off the ground" },
+    { time: "2:08", text: "(it's another day)" },
+    { time: "2:10", text: "Cause morning" },
+    { time: "2:11", text: "rolls around" },
+    { time: "2:12", text: "and it's another day of sun" },
+
+    { time: "2:18", text: "(instrumental break)" },
+
+    { time: "2:48", text: "And when they let you down" },
+    { time: "2:52", text: "The morning rolls around" },
+    { time: "2:55", text: "It's another day of sun" },
+
+    { time: "3:04", text: "(sun, sun, sun)" },
+    { time: "3:06", text: "It's another day of sun" },
+    { time: "3:10", text: "Just another day of sun" },
+    { time: "3:14", text: "It's another day of sun" },
+    { time: "3:17", text: "The day has just begun" },
+    { time: "3:23", text: "It's another day of sun" },
+
+    { time: "3:25", text: " " },
+    { time: "3:42", text: "It's another day of sun" },
+    { time: "3:44", text: " " },
   ];
+
+  function parseTime(time) {
+    if (typeof time === 'number') return time;
+
+    const parts = time.split(':').map(Number);
+    if (parts.length === 2) {
+      return parts[0] * 60 + parts[1];
+    } else if (parts.length === 3) {
+      return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    }
+    return 0;
+  }
+
+  // 변환된 가사 배열
+  const lyrics = rawLyrics.map(line => ({
+    time: parseTime(line.time),
+    text: line.text
+  }));
 
   const lalaland = document.getElementById("lalaland");
   const lyricsContainer = document.getElementById("lyrics");

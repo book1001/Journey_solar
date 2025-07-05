@@ -427,6 +427,12 @@ video {
   text-align: center;
   /* mix-blend-mode: difference; */
   /* filter:invert(1); */
+
+  /* display: flex;
+  padding: 0;
+  background: blue;
+  flex-direction: column;
+  justify-content: center; */
 }
 
 
