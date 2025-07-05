@@ -182,21 +182,15 @@ function btnPages() {
     }
   });
 
-  // ✅ 음악이 종료되면 자동 넘김 멈추기
-  lalaland.addEventListener("ended", () => {
-    isAutoFlipping = false;
-    playButton.classList.remove("playing");
-  });
 
-
-  document.querySelector('.btn-pages').addEventListener('click', function(e) {
-    if (e.target.tagName === 'BUTTON') {
-      const playInfo = document.getElementById('playInfo');
-      const playInfoBg = document.getElementById('playInfoBg');
-      if (playInfo) playInfo.style.opacity = '0';
-      if (playInfoBg) playInfoBg.style.opacity = '0';
-    }
-  });
+document.querySelector('.btn-pages').addEventListener('click', function(e) {
+  if (e.target.tagName === 'BUTTON') {
+    const playInfo = document.getElementById('playInfo');
+    const playInfoBg = document.getElementById('playInfoBg');
+    if (playInfo) playInfo.style.opacity = '0';
+    if (playInfoBg) playInfoBg.style.opacity = '0';
+  }
+});
 
 
 

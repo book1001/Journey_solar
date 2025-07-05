@@ -6,6 +6,10 @@
   src: url('./font/Menlo-Regular_RadioClub.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'AppleChancery';
+  src: url('./font/AppleChancery.woff') format('woff');
+}
 
 
 /* text: drag color ================================================ */

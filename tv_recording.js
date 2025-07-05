@@ -47,7 +47,10 @@ function btnPages() {
   playButton.id = 'play';
   playButton.textContent = '☀︎';
 
-  playButton.addEventListener('click', function () {
+  let mediaRecorder;
+  let recordedChunks = [];
+
+  playButton.addEventListener('click', async function () {
     const lalaland = document.getElementById('lalaland');
     const blockTitle = document.querySelector('.Block_title');
     if (blockTitle) blockTitle.style.display = 'none';
@@ -56,6 +59,36 @@ function btnPages() {
       isAutoFlipping = true;
       playButton.classList.add('playing');
       if (lalaland) lalaland.play();
+
+      // ✅ 1. 화면 캡처 권한 요청
+      try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({
+          video: { mediaSource: "screen" },
+          audio: false // 필요 시 true
+        });
+
+        // ✅ 2. MediaRecorder 시작
+        mediaRecorder = new MediaRecorder(stream);
+        recordedChunks = [];
+
+        mediaRecorder.ondataavailable = function (e) {
+          if (e.data.size > 0) recordedChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = function () {
+          const blob = new Blob(recordedChunks, { type: "video/webm" });
+          const url = URL.createObjectURL(blob);
+          const a = document.getElementById('downloadLink');
+          a.href = url;
+          a.style.display = 'inline';
+          a.click();
+        };
+
+        mediaRecorder.start();
+      } catch (err) {
+        console.error("Screen recording error:", err);
+        return;
+      }
 
       // ✅ 재귀적으로 페이지 넘기기
       function autoFlipOnce() {
@@ -83,6 +116,11 @@ function btnPages() {
       isAutoFlipping = false;
       playButton.classList.remove('playing');
       if (lalaland) lalaland.pause();
+
+      // ✅ MediaRecorder 중지
+      if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+      }
     }
   });
 
@@ -182,21 +220,15 @@ function btnPages() {
     }
   });
 
-  // ✅ 음악이 종료되면 자동 넘김 멈추기
-  lalaland.addEventListener("ended", () => {
-    isAutoFlipping = false;
-    playButton.classList.remove("playing");
-  });
 
-
-  document.querySelector('.btn-pages').addEventListener('click', function(e) {
-    if (e.target.tagName === 'BUTTON') {
-      const playInfo = document.getElementById('playInfo');
-      const playInfoBg = document.getElementById('playInfoBg');
-      if (playInfo) playInfo.style.opacity = '0';
-      if (playInfoBg) playInfoBg.style.opacity = '0';
-    }
-  });
+document.querySelector('.btn-pages').addEventListener('click', function(e) {
+  if (e.target.tagName === 'BUTTON') {
+    const playInfo = document.getElementById('playInfo');
+    const playInfoBg = document.getElementById('playInfoBg');
+    if (playInfo) playInfo.style.opacity = '0';
+    if (playInfoBg) playInfoBg.style.opacity = '0';
+  }
+});
 
 
 

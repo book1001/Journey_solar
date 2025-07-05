@@ -9,8 +9,6 @@
   
   <!--  This is for routing  -->
   <script src="//unpkg.com/navigo"></script>
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
   
   <!-- css -->
   <link rel="stylesheet" href="font.css">
@@ -32,17 +30,20 @@
     </div>
   </div>
 
-  <div id="playInfo">Press the <span style="color: yellow;">☀︎</span> button to play Sunlight TV</div>
+  <a id="downloadLink" style="position: fixed; top: 0; left: 0; z-index:100; display:none" download="recording.webm">Down</a>
+
+  <div id="playInfo">Press the <span style="color: yellow;">☀︎</span> button to burn a DVD</div>
   <div id="playInfoBg"></div>
+  <input id="play" type="radio" checked>
   <div id="cd_hole"></div>
   <!-- <button id="play">●</button> -->
   <div id="lyrics"></div>
-  <audio id="lalaland" src="sound/lalaland_lyrics.mp3" style="position: absolute; bottom: 0; left: 0; z-index: 2;"></audio>
+  <audio id="lalaland" loop src="sound/lalaland_lyrics.mp3" style="position: absolute; bottom: 0; left: 0; z-index: 2;"></audio>
 
   <!-- ======================================================= -->
   <!-- API -->
   <!-- ======================================================= -->
-  <div id="targetArea" class="ARENA-container"></div>
+  <div class="ARENA-container"></div>
 
 
   <!-- ======================================================= -->

@@ -1,7 +1,7 @@
 let slug = 'fcumona-4ui';
 let page = 0; // Initialize the page number
 let totalPages = 1; // Initialize total pages
-let buttonsPerPage = 4;
+let buttonsPerPage = 1;
 
 window.onload = function() {
   renderTitle(slug);
@@ -12,24 +12,139 @@ window.onload = function() {
   });
 };
 
+// =============================================================
+let recorder;
+let recordedChunks = [];
+
+document.getElementById("recordBtn").addEventListener("click", async () => {
+  const recordWindow = window.open('', '', 'width=500,height=500');
+
+  // const content = document.querySelector('.ARENA-container').cloneNode(true);
+  // recordWindow.document.body.appendChild(content);
+
+  try {
+    const stream = await recordWindow.navigator.mediaDevices.getDisplayMedia({
+      video: {
+        frameRate: 30,
+        width: { ideal: 820 },
+        height: { ideal: 620 }
+      },
+      audio: true
+    });
+
+    recorder = new MediaRecorder(stream, {
+      mimeType: 'video/webm;codecs=vp9',
+      videoBitsPerSecond: 8000000 // 8Mbps
+    });
+    recordedChunks = [];
+
+    recorder.ondataavailable = (e) => {
+      if (e.data.size > 0) recordedChunks.push(e.data);
+    };
+
+    recorder.onstop = () => {
+      // 녹화 저장
+      const blob = new Blob(recordedChunks, { type: 'video/webm' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'recording.webm';
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      // 🔻 녹화 멈출 때 음악과 넘김도 멈춤
+      const lalaland = document.getElementById('lalaland');
+      if (lalaland) {
+        lalaland.pause();
+        lalaland.currentTime = 0; // (선택) 처음부터 다시 시작하게
+      }
+
+      isAutoFlipping = false;
+      
+      // ✅ 녹화 종료 후 playInfo 다시 보이기
+      document.body.style.cursor = '';
+      infoText.innerHTML = `Burn my DVD through the <span style="color: yellow;">☀︎</span> light`;
+      document.getElementById("playInfo").style.display = "block";
+      document.getElementById("playInfoBg").style.display = "block";
+
+      // ✅ 페이지를 0으로 초기화
+      page = 0;
+      btnPages();
+      btnPageCounter();
+      renderChannel(slug, page);
+
+      recordWindow.close(); // 창 닫기
+    };
+
+    // ⬇️ infoText 업데이트 + 애니메이션 시작
+    const infoText = document.getElementById("infoText");
+    if (infoText) {
+      infoText.innerHTML = `Getting sunlight for burning <span class="dot-animate"></span>`;
+    }
+
+    setTimeout(() => {
+      // 4초 뒤: playInfo 숨기고 첫 페이지 렌더링
+      document.getElementById("playInfo").style.display = "none";
+      document.getElementById("playInfoBg").style.display = "none";
+
+      // ✅ 또 5초 뒤에 녹화+음악+넘김 시작
+      setTimeout(() => {
+        recorder.start();
+
+        const lalaland = document.getElementById('lalaland');
+        const blockTitle = document.querySelector('.Block_title');
+        if (blockTitle) blockTitle.style.display = 'none';
+
+        isAutoFlipping = true;
+        lalaland.play();
+        document.body.style.cursor = 'none';
+
+        function autoFlipOnce() {
+          page++;
+          if (page > totalPages) {
+            page = 1;
+          }
+
+          renderChannel(slug, page).then(() => {
+            btnPages();
+            btnPageCounter();
+
+            const hasVideo = document.querySelector('.Block_video') !== null;
+            const delay = hasVideo ? 9000 : 3000;
+
+            if (isAutoFlipping) {
+              setTimeout(autoFlipOnce, delay);
+            }
+          });
+        }
+        autoFlipOnce(); // 자동 넘김 시작
+
+        // 3분 48초 뒤 자동 녹화 정지
+        setTimeout(() => {
+          recorder.stop();
+        }, 228000);
+
+      }, 2000); // ▶️ 이게 "5초 후 시작" 지연
+
+    }, 1900); // ⏱️ "4초 후 playInfo 숨기고 페이지 1부터 보여줌"
+
+  } catch (err) {
+    // alert("Burning Canceled!");
+    // console.error(err);
+    recordWindow.close();
+  }
+});
+
+
+
 
 // =============================================================
 // TV: btns
 // =============================================================
-
-document.getElementById('btn-N').addEventListener('click', function() {
-  page++;
-  renderChannel(slug, page);
-  btnPages();
-  btnPageCounter();
-});
-
-document.getElementById('btn-P').addEventListener('click', function() {
-  page--;
-  renderChannel(slug, page);
-  btnPages();
-  btnPageCounter();
-});
 
 function btnPageCounter() {
   document.getElementById('btn-P').disabled = (page === 0 || page === 1);
@@ -45,7 +160,7 @@ function btnPages() {
   // 항상 고정되는 play 버튼
   const playButton = document.createElement('button');
   playButton.id = 'play';
-  playButton.textContent = '☀︎';
+  // playButton.textContent = '☀︎';
 
   playButton.addEventListener('click', function () {
     const lalaland = document.getElementById('lalaland');
@@ -364,17 +479,3 @@ function renderChannel(slug, page) {
 //   "connected_by_user_slug": "chris-sherron"
 
 
-// =============================================================
-// TV: Settings
-// =============================================================
-
-function SET_mono() {
-  const videoElement = document.querySelector('.Block_video');
-  const currentFilter = videoElement.style.filter;
-
-  if (currentFilter === 'grayscale(100%)' || currentFilter === '') {
-      videoElement.style.filter = 'grayscale(0%)';
-  } else {
-      videoElement.style.filter = 'grayscale(100%)';
-  }
-}

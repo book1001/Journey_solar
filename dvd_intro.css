@@ -14,7 +14,7 @@
 
 html,
 body {
-  background: black;
+  /* background: black; */
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -249,25 +249,25 @@ video {
   grid-template-rows: 10% 80% 10%; 
   gap: 0px 0px;  */
 
-  place-items: center;
+  /* place-items: center; */
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 205px;
-  height: 155px;
+  width: 820px;
+  height: 620px;
   margin: 0;
   padding: 0;
   aspect-ratio: 300 / 200;
   /* aspect-ratio: 300 / 319; */
   /* aspect-ratio: 322 / 300; */
   /* aspect-ratio: 328 / 274; */
-  -webkit-transform: translate(-50%, -80%); /* Safari */
-  -moz-transform: translate(-50%, -80%); /* Firefox */
-  -ms-transform: translate(-50%, -80%); /* IE 9 */
-  -o-transform: translate(-50%, -80%); /* Opera */
-  transform: translate(-50%, -80%);
+  -webkit-transform: translate(-50%, -50%); /* Safari */
+  -moz-transform: translate(-50%, -50%); /* Firefox */
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -o-transform: translate(-50%, -50%); /* Opera */
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
   border: none;
-  background-image: url("img/noise.gif");
 }
 
 
@@ -289,19 +289,11 @@ video {
 /* ============================================================= */
 
 .Block_title {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 92%;
-  height: 155px;
-  padding: 4px 0 0 9px;
-  overflow: scroll;
-
   word-wrap: break-word;
   font-family: var(--TVfont-family);
   font-size: var(--TVfont-size);
-  color: blue;
+  color: white;
+  text-shadow: 0 0px 6px black;
   /* mix-blend-mode: difference; */
 }
 
