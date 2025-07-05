@@ -50,7 +50,7 @@ document.getElementById("recordBtn").addEventListener("click", async () => {
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = 'recording.webm';
+      a.download = 'sunburn-DVD.webm';
       document.body.appendChild(a);
       a.click();
       URL.revokeObjectURL(url);
@@ -209,7 +209,7 @@ function btnPages() {
 
   for (let i = startPage; i <= endPage; i++) {
     const button = document.createElement('button');
-    button.textContent = i;
+    button.textContent = `CH ${i}`;
     button.disabled = (i === page);
     button.addEventListener('click', function () {
       page = i;

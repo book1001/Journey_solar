@@ -104,6 +104,8 @@ body {
   color: black;
 }
 
+
+
 #playInfo {
   position: absolute;
   width: 100%;
@@ -124,12 +126,11 @@ body {
   text-align: center;
 }
 
-#playInfo {
-  img {
-    width: 194px;
-    animation: spin 4s linear infinite;
-    transform-origin: center;
-  }
+#recordBtn {
+  width: 194px;
+  animation: spin 4s linear infinite;
+  transform-origin: center;
+  cursor: pointer;
 }
 
 @keyframes spin {
