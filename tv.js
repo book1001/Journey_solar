@@ -12,6 +12,40 @@ window.onload = function() {
   });
 };
 
+// =============================================================
+// Slug Change
+// =============================================================
+
+document.getElementById('TV-slug').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const inputValue = e.target.value.trim();
+    
+    try {
+      const urlParts = inputValue.split('/');
+      const lastPart = urlParts.filter(part => part !== '').pop(); // 마지막 / 뒤의 slug
+      if (lastPart) {
+        slug = lastPart;
+        page = 0; 
+        renderTitle(slug);
+        fetchTotalPages(slug).then(() => {
+          btnPages();
+          btnPageCounter();
+        });
+
+        // 사운드 재생
+        const tvOnSound = new Audio('sound/tvon.mp3');
+        tvOnSound.play().catch(error => {
+          console.warn('Audio playback failed:', error);
+        });
+
+      }
+    } catch (error) {
+      console.error("Invalid URL format");
+    }
+  }
+});
+
+
 
 // =============================================================
 // TV: btns
@@ -69,12 +103,35 @@ function btnPages() {
           btnPages();
           btnPageCounter();
 
-          const hasVideo = document.querySelector('.Block_video') !== null;
-          const delay = hasVideo ? 9000 : 3000;
+        let delay = 3000; // 기본값
 
-          if (isAutoFlipping) {
-            setTimeout(autoFlipOnce, delay);
-          }
+        // .delay숫자 클래스를 가진 요소를 찾기
+        const delayElement = document.querySelector('[class*="delay"]');
+        let delayClass;
+
+        if (delayElement) {
+          const classList = Array.from(delayElement.classList);
+          delayClass = classList.find(cls => /^delay\d+$/.test(cls));
+        }
+
+        if (delayClass) {
+          delay = parseInt(delayClass.replace('delay', ''), 10);
+        } else if (document.querySelector('.short')) {
+          delay = 1500;
+        } else if (document.querySelector('.default')) {
+          delay = 3000;
+        } else if (document.querySelector('.middle')) {
+          delay = 6000;
+        } else if (document.querySelector('.long')) {
+          delay = 9000;
+        } else if (document.querySelector('.longest')) {
+          delay = 12000;
+        }
+
+        if (isAutoFlipping) {
+          setTimeout(autoFlipOnce, delay);
+        }
+
         });
       }
       autoFlipOnce(); // 시작
@@ -270,6 +327,7 @@ function renderChannel(slug, page) {
                     // mp4, mp3
                     case "Attachment":
                       return `
+                      <img class="Block_img" src="${block.image.large.url}"/>
                       <video class="Block_video" autoplay loop src="${block.attachment.url}"></video>
                       <img class="Block_img noise" src="img/noise.gif">
                       <p class="Block_description">${block.description}</p>
@@ -283,7 +341,7 @@ function renderChannel(slug, page) {
                       <div>
                         <p class="Block_text">${block.content}</p>
                       </div>
-                      
+                      <p class="Block_description">${block.description}</p>
                       <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
 
@@ -304,6 +362,7 @@ function renderChannel(slug, page) {
                         <img class="Block_loop_img" style="transform: translate(0, -100%);" src="${block.image.large.url}">
                         <img class="Block_loop_img" src="${block.image.large.url}">
                         <img class="Block_loop_img" style="transform: translate(0, 100%);" src="${block.image.large.url}">
+                        <p class="Block_description">${block.description}</p>
                         <audio autoplay loop src="sound/noise.mp3"></audio>
                       </div>
                       `;
@@ -311,13 +370,10 @@ function renderChannel(slug, page) {
                     // website
                     case "Link":
                       return `
-                      <div class="Block_loop">
-                        <img class="Block_loop_img_cover" src="img/noise.gif">
-                        <img class="Block_loop_img" style="transform: translate(0, -100%);" src="${block.image.large.url}">
-                        <img class="Block_loop_img" src="${block.image.large.url}">
-                        <img class="Block_loop_img" style="transform: translate(0, 100%);" src="${block.image.large.url}">
-                        <audio autoplay loop src="sound/noise.mp3"></audio>
-                      </div>
+                      <img class="Block_img" src="${block.image.large.url}"/>
+                      <img class="Block_img noise" src="img/noise.gif">
+                      <p class="Block_description">${block.description}</p>
+                      <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
                       
                     case "Channel":
@@ -331,6 +387,23 @@ function renderChannel(slug, page) {
     
     let contents = document.getElementsByClassName("ARENA-container")[0];
     contents.innerHTML = elements; // Clear existing content and add new content
+
+    // 🔇 mute 설정
+    if (document.querySelector('.mute')) {
+      const video = document.querySelector('.Block_video');
+      if (video) {
+        video.muted = true;
+      }
+    }
+
+    // ⏩ speedUp 설정
+    if (document.querySelector('.speedUp')) {
+      const video = document.querySelector('.Block_video');
+      if (video) {
+        video.playbackRate = 1.2;
+      }
+    }
+    
   })
 }
 

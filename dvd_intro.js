@@ -87,12 +87,9 @@ function renderChannel(slug, page) {
                     // basic: text
                     case "Text":
                       return `
-                      <img class="Block_img" src="img/noise.gif">
                       <div>
                         <p class="Block_text">${block.content}</p>
                       </div>
-                      
-                      <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
 
                     // basic: image

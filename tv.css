@@ -25,10 +25,13 @@ body {
   width: 0;
 }
 
-/* button {
+
+button {
+  min-width: 22px;
+  height: 22px;
   border: 1px solid rgb(208, 190, 48);
   background: white;
-  color: rgb(43, 43, 43);
+  color: rgb(63, 63, 63);
   opacity: 0.9;
   border-radius: 3px;
   font-family: Menlo;
@@ -36,9 +39,20 @@ body {
   font-size: 13px;
 }
 
+
+
 button:hover {
   color: gray;
-} */
+  opacity: 0.5;
+}
+
+
+button:disabled {
+  color: gray;
+  opacity: 0.5;
+}
+
+
 
 /* ============================================================= */
 /* TV: Container */
@@ -104,8 +118,6 @@ button:hover {
   cursor: pointer; */
   font-family: Menlo;
   font-size: 12px;
-  width: 23.41px;
-  height: 21.5px;
 }
 
 #play:hover {
@@ -222,11 +234,14 @@ button:hover {
 /* TV: hole */
 /* ============================================================= */
 
-.TV-hole {
+#TV-slug {
   position: absolute;
-  width: 110px;
+  width: 156px;
+  height: 10px;
+  bottom: 40px;
+  /* width: 110px;
   height: 4px;
-  bottom: 50px;
+  bottom: 50px; */
   left: 50%;
   -webkit-transform: translate(-50%, 0); 
   -moz-transform: translate(-50%, 0); 
@@ -237,8 +252,35 @@ button:hover {
   z-index: 2;
   background: #282424;
   border: solid 1px #484e49;
-  border-radius: 2px;
+  border-radius: 4px;
+  color: rgb(219, 210, 137);
+  font-family: Menlo;
+  font-size: 9px;
+  text-align: center;
+  /* border-radius: 2px; */
 }
+
+input::placeholder {
+  color: rgb(173, 163, 131);
+  text-align: center;
+}
+
+input:focus {
+  color: rgb(219, 210, 137);
+  border: solid 1px #484e49;
+  outline: none;
+}
+
+input:focus::placeholder  {
+  color: transparent;
+}
+
+input::selection {
+  color: rgb(219, 210, 137);
+  background: yellow;
+}
+
+
 
 
 /* ============================================================= */
@@ -319,6 +361,7 @@ video {
   font-family: var(--TVfont-family);
   font-size: var(--TVfont-size);
   color: blue;
+  /* text-shadow: 0px 0px 1px blue; */
   /* mix-blend-mode: difference; */
 }
 
@@ -392,6 +435,7 @@ video {
 /* ============================================================= */
 
 .Block_description {
+  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -451,7 +495,8 @@ video {
   overflow: hidden;
   -webkit-animation: marquee 7s linear infinite;
   animation: marquee 7s linear infinite;
-  filter:grayscale(100%);
+  filter: saturate(2);
+  /* filter: grayscale(100%); */
 }
 
 @-webkit-keyframes marquee {
