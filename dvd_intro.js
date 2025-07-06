@@ -66,7 +66,7 @@ function renderChannel(slug, page) {
                 ${(() => {
                   if (block.title && block.class !== 'Link' && block.class !== 'Channel') {
                     return `
-                    <strong class="Block_title">${block.title} | ${block.created_at} | ${block.class}</strong>
+                    <strong class="Block_title">${block.created_at} | ${block.class} | ${block.title}</strong>
                     `;
                   }
 
