@@ -66,3 +66,40 @@ function openDvd(URL, name, popupW, popupH) {
   let left = (window.innerWidth - popupW) / 2;
   popupWin = window.open(URL, name, 'resizable=no, width=' + popupW + ',height=' + popupH + ',top=' + top + ',left=' + left);
 }
+
+
+
+// =============================================================
+// Open: Bg
+// =============================================================
+const button = document.getElementById('bgOn');
+const tvOn = document.getElementById('tvOn');
+
+// video_info > auto play
+window.addEventListener('DOMContentLoaded', () => {
+  const videoInfos = document.querySelectorAll('video.video_info');
+  videoInfos.forEach(video => {
+    video.muted = true; 
+    video.play().catch(e => {
+      console.warn('auto play not working:', e);
+    });
+  });
+});
+
+// btn > bg
+button.addEventListener('click', () => {
+  document.body.style.background = '#fffbd9';
+  tvOn.currentTime = 0;
+  tvOn.loop = false; 
+  tvOn.play();
+});
+
+// btn > Favicon
+button.addEventListener('click', () => {
+  const yellowFavicon = "data:image/svg+xml," +
+    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>" +
+    "<text y='0.9em' font-size='90' fill='yellow'>☀︎</text></svg>";
+
+  const favicon = document.getElementById('favicon');
+  favicon.href = yellowFavicon;
+});

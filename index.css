@@ -19,6 +19,9 @@ html,body {
 
 body {
   background: lightgray;
+  /* background: lemonchiffon;
+  background: #fff9c6;
+  background: #fffbd9; */
 }
 
 ::-webkit-scrollbar { /* width */

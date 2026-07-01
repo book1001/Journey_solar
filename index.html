@@ -38,8 +38,8 @@
   <div class="menu-R"">
     <button onclick="location.href='#p3-1'" class="menu-btn">How to use Sunlight TV</button>
     <div class="menu-sub">
-      <a href="#p3-1-1">⠀Basic Features</a><br>
-      <a href="#p3-1-2">⠀Fine-tuning</a><br>
+      <a href="#p3-1-1">Basic Features⠀</a><br>
+      <a href="#p3-1-2">Fine-tuning⠀</a><br>
     </div>
     <br>
     <button onclick="location.href='#p3-2'" class="menu-btn">How to Burn my DVD</button><br>
@@ -63,7 +63,18 @@
   <!-- ====================================================== -->
   <!-- Island -->
   <!-- ====================================================== -->
-  <div data-include="1_island.html"></div>
+  <!-- <div data-include="1_island.html"></div> -->
+  <div id="island">
+    <button id="bgOn" class="about-btn-tv" onclick="openWin('tv.html', '✴︎', 300, 344)"><span style="font-size: 11px;">☀︎</span> Sunlight TV</button>
+    <br><br>
+    <button class="about-btn-tv" onclick="openDvd('dvd.html', '✴︎✴', 820, 620)">Burn my DVD</button>
+    <br><br>
+    <a href="https://www.are.na/halim-lee/fcumona-4ui" target="_blank">are.na</a>
+  </div>
+
+  <div id="island_bg"></div>
+  <audio id="tvOn" src="sound/tvon.mp3" preload="auto"></audio>
+
 
   <!-- ====================================================== -->
   <!-- Col-2 -->
