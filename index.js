@@ -1,10 +1,4 @@
-// ==============================================
-// innerHTML Fetch
-// ==============================================
-document.querySelectorAll("[data-include]").forEach(async el => {
-  const res = await fetch(el.dataset.include);
-  el.innerHTML = await res.text();
-});
+
 
 
 // ==============================================
@@ -102,4 +96,42 @@ button.addEventListener('click', () => {
 
   const favicon = document.getElementById('favicon');
   favicon.href = yellowFavicon;
+});
+
+
+// =============================================================
+// Lazy Loading
+// =============================================================
+function initLazyVideos(root = document) {
+  const lazyVideos = root.querySelectorAll('.lazy');
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const video = entry.target;
+
+      if (!video.src && video.dataset.src) {
+        video.src = video.dataset.src;
+        video.load();
+      }
+
+      observer.unobserve(video);
+    });
+  }, {
+    rootMargin: '300px'
+  });
+
+  lazyVideos.forEach(video => observer.observe(video));
+}
+
+// ==============================================
+// innerHTML Fetch
+// ==============================================
+document.querySelectorAll("[data-include]").forEach(async el => {
+  const res = await fetch(el.dataset.include);
+  el.innerHTML = await res.text();
+
+  // innerHTML 삽입 후 실행
+  initLazyVideos(el);
 });
