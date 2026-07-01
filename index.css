@@ -176,6 +176,10 @@ figcaption {
   align-content: center;
   z-index: 2;
   mix-blend-mode: difference;
+  -webkit-backdrop-filter: blur(3px);
+  -moz-backdrop-filter: blur(3px);
+  -ms-backdrop-filter: blur(3px);
+  -o-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
   background: black;
   /* background: #d8d8d8; */
