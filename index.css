@@ -127,6 +127,16 @@ figcaption {
   padding-inline: 0;
   background: transparent;
   border: none;
+  color: #333;
+}
+
+.menu-L button:hover,
+.menu-C button:hover,
+.menu-R button:hover,
+.footer-L button:hover,
+.footer-C button:hover,
+.footer-R button:hover {
+  color: white;
 }
 
 
