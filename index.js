@@ -108,18 +108,22 @@ const footerL = document.getElementById("footer-L");
 const footerR = document.getElementById("footer-R");
 
 function updateIslandVisibility() {
-  const hide = window.innerWidth <= 600 && window.scrollY > 0;
+  const hideIsland = window.innerWidth <= 933 && window.scrollY > 0;
+  const hideFooter = window.innerWidth <= 600 && window.scrollY > 0;
 
-  island.classList.toggle("is-hidden", hide);
-  islandBg.classList.toggle("is-hidden", hide);
-  footerL.classList.toggle("is-hidden", hide);
-  footerR.classList.toggle("is-hidden", hide);
+  // island.classList.toggle("is-hidden", hideIsland);
+  // islandBg.classList.toggle("is-hidden", hideIsland);
+
+  island.classList.toggle("is-hidden", hideFooter);
+  islandBg.classList.toggle("is-hidden", hideFooter);
+
+  footerL.classList.toggle("is-hidden", hideFooter);
+  footerR.classList.toggle("is-hidden", hideFooter);
 }
 
 window.addEventListener("scroll", updateIslandVisibility);
 window.addEventListener("resize", updateIslandVisibility);
 window.addEventListener("load", updateIslandVisibility);
-
 
 // =============================================================
 // Lazy Loading

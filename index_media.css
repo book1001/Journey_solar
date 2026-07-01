@@ -48,10 +48,6 @@
     display: none;
   }
 
-  .is-hidden {
-    display: none !important;
-  }
-
   .mobileOnly {
     display: block;
   }

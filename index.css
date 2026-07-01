@@ -340,3 +340,7 @@ figcaption {
   font-size: 11px;
   color: #5050ff;
 }
+
+.is-hidden {
+  display: none !important;
+}
