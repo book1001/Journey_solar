@@ -100,6 +100,28 @@ button.addEventListener('click', () => {
 
 
 // =============================================================
+// Mobile: island
+// =============================================================
+const island = document.getElementById("island");
+const islandBg = document.getElementById("island_bg");
+const footerL = document.getElementById("footer-L");
+const footerR = document.getElementById("footer-R");
+
+function updateIslandVisibility() {
+  const hide = window.innerWidth <= 600 && window.scrollY > 0;
+
+  island.classList.toggle("is-hidden", hide);
+  islandBg.classList.toggle("is-hidden", hide);
+  footerL.classList.toggle("is-hidden", hide);
+  footerR.classList.toggle("is-hidden", hide);
+}
+
+window.addEventListener("scroll", updateIslandVisibility);
+window.addEventListener("resize", updateIslandVisibility);
+window.addEventListener("load", updateIslandVisibility);
+
+
+// =============================================================
 // Lazy Loading
 // =============================================================
 function initLazyVideos(root = document) {

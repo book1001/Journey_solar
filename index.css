@@ -103,14 +103,14 @@ figcaption {
   text-align: right;
 }
 
-.footer-L {
+#footer-L {
   position: fixed;
   bottom: 5px;
   left: 9px;
   z-index: 2;
 }
 
-.footer-R {
+#footer-R {
   position: fixed;
   bottom: 5px;
   right: 9px;
@@ -120,9 +120,8 @@ figcaption {
 .menu-L button,
 .menu-C button,
 .menu-R button,
-.footer-L button,
-.footer-C button,
-.footer-R button {
+#footer-L button,
+#footer-R button {
   padding-block: 0;
   padding-inline: 0;
   background: transparent;
@@ -133,9 +132,8 @@ figcaption {
 .menu-L button:hover,
 .menu-C button:hover,
 .menu-R button:hover,
-.footer-L button:hover,
-.footer-C button:hover,
-.footer-R button:hover {
+#footer-L button:hover,
+#footer-R button:hover {
   color: white;
 }
 
@@ -332,3 +330,13 @@ figcaption {
 .noZoom {
   cursor: default;
 } */
+
+
+/* ============================================================= */
+/* Mobile */
+/* ============================================================= */
+.mobileOnly {
+  display: none;
+  font-size: 11px;
+  color: #5050ff;
+}

@@ -11,6 +11,11 @@
 }
 
 @media only screen and (max-width:933px) {
+  html,body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
   .col2 {
     grid-template-columns: 1fr;
   }
@@ -39,9 +44,16 @@
     display: none;
   }
 
-  #island,
-  #island_bg {
+  .about-btn-dvd {
     display: none;
+  }
+
+  .is-hidden {
+    display: none !important;
+  }
+
+  .mobileOnly {
+    display: block;
   }
 
 }
