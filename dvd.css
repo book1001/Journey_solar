@@ -109,7 +109,7 @@ body {
 #playInfo {
   position: absolute;
   width: 100%;
-  top: 32%;
+  top: 27%;
   left: 50%;
   -webkit-transform: translate(-50%, 0); 
   -moz-transform: translate(-50%, 0); 
@@ -127,7 +127,7 @@ body {
 }
 
 #recordBtn {
-  width: 194px;
+  width: 182px;
   animation: spin 4s linear infinite;
   transform-origin: center;
   cursor: pointer;
@@ -142,9 +142,9 @@ body {
  p {
     font-family: AppleChancery;
     font-weight: bold;
-    color: yellow;
+    color: whiet;
     text-shadow: 0 0px 6px black;
-    font-size: 40px;
+    font-size: 32px;
  } 
 }
 
@@ -186,7 +186,7 @@ body {
   border: none;
   z-index: 3;
   word-wrap: break-word;
-  background: blue;
+  background: #314fff;
 }
 
 #cd_hole {

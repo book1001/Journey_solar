@@ -81,45 +81,26 @@ function renderChannel(slug, page) {
                     // mp4, mp3
                     case "Attachment":
                       return `
-                      <p class="Block_description">${block.description}</p>
                       `;
 
                     // basic: text
                     case "Text":
                       return `
-                      <div>
-                        <p class="Block_text">${block.content}</p>
-                      </div>
                       `;
 
                     // basic: image
                     case "Image":
                       return `
-                      <p class="Block_description">${block.description}</p>
                       `;
                       
                     // iframe: Youtube  
                     case "Media":
                       return `
-                      <div class="Block_loop">
-                        <img class="Block_loop_img_cover" src="img/noise.gif">
-                        <img class="Block_loop_img" style="transform: translate(0, -100%);" src="${block.image.large.url}">
-                        <img class="Block_loop_img" src="${block.image.large.url}">
-                        <img class="Block_loop_img" style="transform: translate(0, 100%);" src="${block.image.large.url}">
-                        <audio autoplay loop src="sound/noise.mp3"></audio>
-                      </div>
                       `;
 
                     // website
                     case "Link":
                       return `
-                      <div class="Block_loop">
-                        <img class="Block_loop_img_cover" src="img/noise.gif">
-                        <img class="Block_loop_img" style="transform: translate(0, -100%);" src="${block.image.large.url}">
-                        <img class="Block_loop_img" src="${block.image.large.url}">
-                        <img class="Block_loop_img" style="transform: translate(0, 100%);" src="${block.image.large.url}">
-                        <audio autoplay loop src="sound/noise.mp3"></audio>
-                      </div>
                       `;
                       
                     case "Channel":

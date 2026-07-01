@@ -7,11 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='white'>☼</text></svg>">
 
-  <base target="_blank">
-  
-  <!--  This is for routing  -->
-  <script src="//unpkg.com/navigo"></script>
-  
   <!-- css -->
   <link rel="stylesheet" href="font.css">
   <link rel="stylesheet" href="index.css">
@@ -19,169 +14,89 @@
 </head>
 
 <body>
-  <!-- ======================================================= -->
-  <!-- Info -->
-  <!-- ======================================================= -->
-  <!-- <a class="info" href="https://leehalim.com">
-    solarpanel.scrapthe.world
-  </a>
-  <br><br> -->
-  <p class="info" style="text-align: left;">
-    The solar panel has always had the ability to store the sun.<br>
-    It was I who left it in the dark for a year, stripping it of that power—<br>
-    and now, I bring it back to the light, capturing the beauty of NYC through the sun’s energy.<br>
-    It’s always been me who defines the value of my ☀︎ panel.
-  </p>
-  <a class="info_r" href="https://leehalim.com">
-    Halim Lee | leehalim.com
-  </a>
-  <img id="lalaland_img" src="img_info/panel_5.png">
-  <!-- <audio id="lalaland" autoplay loop src="sound/lalaland.mp3"></audio> -->
-  <audio id="tvOn" autoplay src="sound/tvon.mp3"></audio>
-
-  <!-- <video id="lalaland" src="img_info/lalaland.mp4"></video> -->
-  
-
-  <!-- ======================================================= -->
-  <!-- About -->
-  <!-- ======================================================= -->
-  <div class="about">
-    <!-- <button class="about-btn-tv" onclick="openWin('https://solarpanel1.glitch.me', '✴︎✴︎', 300, 344)">Solar Power</button> -->
-    <button id="bgOn" class="about-btn-tv" onclick="openWin('tv.html', '✴︎', 300, 344)"><span style="font-size: 11px;">☀︎</span> Sunlight TV</button>
+  <!-- ====================================================== -->
+  <!-- Menu -->
+  <!-- ====================================================== -->
+  <div class="menu-L">
+    <button onclick="location.href='#p2-1'" class="menu-btn">Story Behind</button><br>
+    <a href="#p3-1-tv">⠀Sunlight TV</a><br>
+    <a href="#p3-1-dvd">⠀Burn my DVD</a><br>
+    <a href="#p3-1-ultralight">⠀Ultralight TV</a><br>
+    <!-- <button onclick="location.href='#p2-2'" class="menu-btn">⠀Sunlight TV</button><br>
+    <button onclick="location.href='#p2-2'" class="menu-btn">⠀Burn my DVD</button><br> -->
     <br>
-    <button class="about-btn-tv" onclick="openDvd('dvd.html', '✴︎✴', 820, 620)">Burn my DVD</button>
-    <br><br>
-    <a href="https://www.are.na/halim-lee/fcumona-4ui" target="_blank">are.na</a>
-
-    <br><br><br>
-    <p style="padding: 0 170px;">
-      Last summer, on May 26, 2024, I worked late into the night and fell asleep in bed with the light still on.
-      Around 3 a.m., half-asleep, I woke to the sound of the light flickering off.
-      Oh, another electrical problem, I thought. I wanted to go back to sleep, but just in case it was an issue with the wiring—this is an old house, and problems like that happen often—I turned over and got up.
-      <br><br>
-      And there,<br>
-      in my small room,<br>
-      stood a sturdy guy, about six feet tall<br>
-      — framed against the blue night.
-    </p>
-    <figure>
-      <video class="video_info fig_info" autoplay mute loop src="img_info/theguy_in.mp4"></video>
-      <figcaption>May 26, 2024, 2:57am — <i>That Guy</i></figcaption>
-    </figure><br>
-
-    <p>
-      <b>**</b>
-      <br>
-      (on-going writing)
-    </p>
-    <figure>
-      <img src="img_info/TWA_email.png" class="fig_info">
-      <figcaption>Jun 21, 2025, 4:03pm — Email from TWA<br><br>"please bring a physical object related to your Total Work of Art"</figcaption>
-    </figure><br>
-
-    <figure>
-      <img src="img_info/panel_3.png" class="fig_info">
-      <figcaption>The abandoned solar panel</figcaption>
-    </figure><br>
-
-    <figure>
-      <img src="img_info/panel_1.png" class="fig_info">
-      <figcaption>Jun 22, 2025, 12:00am — No sun energy at all</figcaption>
-    </figure><br>
-
-    <figure>
-      <img src="img_info/ny_1.png" class="fig_info">
-      <figcaption>Jun 22, 2025, 5:24am — Sun comes up, 34th St–Penn Station, NYC</figcaption>
-    </figure><br>
-
-    <figure>
-      <img src="img_info/panel_2.png" class="fig_info">
-      <figcaption>Jun 22, 2025, 6:00am — Storing the sun, roaming NYC</figcaption>
-    </figure><br>
-
-    <figure>
-      <img src="img_info/panel_4.png" class="fig_info">
-      <figcaption>Jun 22, 2025, 6:33am — Breakfast with my solar panel</figcaption>
-    </figure><br>
-
-    <figure>
-      <img src="img_info/panel_5.png" class="fig_info">
-      <figcaption>Jun 22, 2025, 6:33am — Getting energy from the sun</figcaption>
-    </figure><br>
-
-    <!-- Welcome to are.na TV<br> 
-    This website builds community TV channels based on Are.na<br><br>
-
-    <button class="about-btn-tv" onclick="openWin('tv.html', '✴︎✴︎', 300, 344)">are.na TV</button>
-    <br><br><br>
-
-    Feel free to upload your favorite videos, audio, images, or text <a href="https://www.are.na/halim-lee/are-natv" target="_blank">here</a><br>
-    Your content will be broadcast on are.na TV<br><br><br>
-    <a href="https://www.are.na/halim-lee/are-natv" target="_blank">
-      <img class="about-img-arena" src="img/about_arena.png">
-    </a>
-    <br><br>
+    <button onclick="location.href='#p2-2'" class="menu-btn">Story After</button><br>
     
-    YouTube and Vimeo are currently experiencing bad reception.<br>
-    I would recommend uploading MP4 or MP3 files instead.<br>
-    <br><br><br>
+    <a href="#p2-2-another">⠀Another Day of Sun</a><br>
+    <a href="#p2-2-radio">⠀Sol.Radio</a><br>
+    <a href="#p2-2-wrens">⠀Little Wrens</a><br>
+    <a href="#p2-2-arenaCamera">⠀Are.na Camera</a><br>
+    <!-- <button onclick="location.href='#p2-2'" class="menu-btn">⠀Ultralight TV</button><br>
+    <button onclick="location.href='#p2-2'" class="menu-btn">⠀Another Day of Sun</button><br>
+    <button onclick="location.href='#p2-2'" class="menu-btn">⠀Meddy</button><br>
+    <button onclick="location.href='#p2-2'" class="menu-btn">⠀Sol.Radio</button><br>
+    <button onclick="location.href='#p2-2'" class="menu-btn">⠀Are.na Camera</button><br> -->
+  </div>
 
-    ✴︎✴︎
-    <br><br>
-    In progress — mobile device remote control changing are.na TV channels -->
+  <!-- <div class="menu-C">
+    <button onclick="location.href='index.html'">solarpanel.scrapthe.world</button>
+  </div> -->
+
+  <div class="menu-R"">
+    <button onclick="location.href='#p3-1'" class="menu-btn">How to use Sunlight TV</button><br>
+    <a href="#p3-1-1">⠀Basic Features</a><br>
+    <a href="#p3-1-2">⠀Fine-tuning</a><br>
+    <br>
+    <button onclick="location.href='#p3-2'" class="menu-btn">How to Burn my DVD</button><br>
+    <!-- <a href="#p3-2-1">⠀Spinning CD</a><br> -->
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- Footer -->
+  <!-- ====================================================== -->
+  <div class="footer-L">
+    <button onclick="location.href='index.html'">solarpanel.scrapthe.world</button>
+  </div>
+
+  <div class="footer-R">
+    <button onclick="javascript:window.open('https://leehalim.com', '_blank');" type="button">
+      Halim Lee | leehalim.com
+    </button>
   </div>
 
 
+  <!-- ====================================================== -->
+  <!-- Island -->
+  <!-- ====================================================== -->
+  <div data-include="1_island.html"></div>
 
-  <!-- ======================================================= -->
-  <!-- API: logs -->
-  <!-- ======================================================= -->
-  <!-- <div class="ARENA-container"></div> -->
+  <!-- ====================================================== -->
+  <!-- Col-L -->
+  <!-- ====================================================== -->
+  <div class="col-L">
+    <div id="p2-1" data-include="2-1_story_behind.html"></div>
+    <div id="p2-2" data-include="2-2_story_after.html"></div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- Col-R -->
+  <!-- ====================================================== -->
+  <div class="col-R">
+    <div id="p3-1" data-include="3-1_howto_tv.html"></div>
+    <div id="p3-2" data-include="3-2_howto_dvd.html"></div>
+  </div>
 
 
+  <!-- ====================================================== -->
+  <!-- Zoom In/Out -->
+  <!-- ====================================================== -->
+  <div class="zoomed" onclick="zoomOut()">
+    <img id="zoomedImg" src="">
+  </div>
 
-  <!-- ======================================================= -->
+  <!-- ====================================================== -->
   <!-- JS -->
-  <!-- ======================================================= -->
-   <script>
-      const button = document.getElementById('bgOn');
-      const lalalandImg = document.getElementById('lalaland_img');
-      const lalaland = document.getElementById('lalaland');
-      const tvOn = document.getElementById('tvOn');
-
-      // video_info > auto play
-      window.addEventListener('DOMContentLoaded', () => {
-        const videoInfos = document.querySelectorAll('video.video_info');
-        videoInfos.forEach(video => {
-          video.muted = true; 
-          video.play().catch(e => {
-            console.warn('auto play not working:', e);
-          });
-        });
-      });
-
-      // btn > bg
-      button.addEventListener('click', () => {
-        document.body.style.background = 'lemonchiffon';
-        // lalalandImg.style.display = 'block';
-        // lalaland.loop = true; 
-        // lalaland.play();
-        tvOn.play();
-        tvOn.loop = false; 
-      });
-
-      // btn > Favicon
-      button.addEventListener('click', () => {
-        const yellowFavicon = "data:image/svg+xml," +
-          "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>" +
-          "<text y='0.9em' font-size='90' fill='yellow'>☀︎</text></svg>";
-
-        const favicon = document.getElementById('favicon');
-        favicon.href = yellowFavicon;
-      });
-  </script>
-
+  <!-- ====================================================== -->
   <script type="text/javascript" src="index.js"></script>
-
 </body>
 </html>

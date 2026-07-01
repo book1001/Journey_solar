@@ -1,32 +1,33 @@
 /* ============================================================= */
+/* Variable */
+/* ============================================================= */
+:root {
+  --scrollbar-width: 20px;
+  --scrollbar-right: 0px;
+  --scrollbar-left: 17px;
+}
+
+
+/* ============================================================= */
 /* Basic */
 /* ============================================================= */
-
-body {
+html,body {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
+}
 
-  font-family: Arial, Helvetica, sans-serif; 
-  font-size: 13px;
-  text-align: center;
-  color: #333;
+body {
   background: lightgray;
 }
 
-::-webkit-scrollbar { 
-  width: 0;
+::-webkit-scrollbar { /* width */
+  width: var(--scrollbar-width);
 }
 ::-webkit-scrollbar-track { /* Track */
   background: transparent;
 }
 ::-webkit-scrollbar-thumb { /* Handle */
-  background: transparent;
+  background: rgb(0,0,0,1);
   background-clip: padding-box;
   border-top: 0px solid transparent;
   border-right: var(--scrollbar-right) solid transparent;
@@ -35,125 +36,285 @@ body {
 }
 
 
-
 button {
-  width: 100px;
   height: 22px;
-  font-size: 13px;
+  cursor: pointer;
 }
 
+hr {
+  width: 100%;
+}
+
+figure {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+figure {
+  img, video {
+    width: 70%;
+    border-style: ridge;
+    /* border-style: inset; */
+    border-width: 2px;
+    cursor: zoom-in;
+  }
+}
+
+figcaption {
+  padding-top: 2px;
+}
+
+/* ============================================================= */
+/* Menu, Footer */
+/* ============================================================= */
+.menu-L {
+  position: fixed;
+  top: 1px;
+  left: 9px;
+  z-index: 2;
+}
+
+.menu-C {
+  position: fixed;
+  top: 1px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 2;
+}
+
+.menu-R {
+  position: fixed;
+  top: 1px;
+  right: 9px;
+  z-index: 2;
+  text-align: right;
+}
+
+.footer-L {
+  position: fixed;
+  bottom: 5px;
+  left: 9px;
+  z-index: 2;
+}
+
+.footer-R {
+  position: fixed;
+  bottom: 5px;
+  right: 9px;
+  z-index: 2;
+}
+
+.menu-L button,
+.menu-C button,
+.menu-R button,
+.footer-L button,
+.footer-C button,
+.footer-R button {
+  padding-block: 0;
+  padding-inline: 0;
+  background: transparent;
+  border: none;
+}
 
 
 /* ============================================================= */
-/* Info */
+/* Island */
 /* ============================================================= */
-.info {
-  position: fixed; 
-  top: 10px; 
-  left: 10px; 
-  font-weight: normal;
-  color: black;
+#island {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 154px;
+  height: 154px;
+  margin: 0;
+  padding: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  align-content: center;
+  z-index: 3;
+  text-align: center;
+  border: 1px solid white;
 }
 
-.info_r {
-  position: fixed; 
-  top: 10px; 
-  right: 10px; 
-  font-weight: normal;
-  color: black;
+#island_bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 155px;
+  height: 155px;
+  margin: 0;
+  padding: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  align-content: center;
+  z-index: 2;
+  mix-blend-mode: difference;
+  backdrop-filter: blur(3px);
+  background: black;
+  /* background: #d8d8d8; */
+  border: 1px outset black;
+  text-align: center;
 }
 
-#lalaland_img {
+
+/* ============================================================= */
+/* menu */
+/* ============================================================= */
+.page {
+  display: none;
+}
+
+/* .row1 {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: -1;
-  /* filter: sepia(1); */
-  /* filter: grayscale(100%); */
-}
-
-/* ============================================================= */
-/* About */
-/* ============================================================= */
-
-.about { 
-  display: block;
-  padding: 140px 0 100px 0; 
-  width: 740px;
-}
-
-.about-btn-tv {
-  display: block; 
-  margin: auto;
-}
-
-.about-btn-tv:hover {
-  background: blue;
-  color: yellow;
-}
-
-.about-img-arena {
-  display:block; 
-  margin: auto; 
-  width: 250px; 
-  height: auto; 
-  border: 1px solid gray;
-}
-
-
-/* ============================================================= */
-/* API: container */
-/* ============================================================= */
-
-.ARENA-container {
-  /* display: grid; 
-  grid-auto-columns: 1fr; 
-  grid-template-columns: 5% 70% 25%; 
-  grid-template-rows: 10% 80% 10%; 
-  gap: 0px 0px;  */
-
-  place-items: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 205px;
-  height: 155px;
-  margin: 0;
-  padding: 0;
-  -webkit-transform: translate(-50%, -80%); /* Safari */
-  -moz-transform: translate(-50%, -80%); /* Firefox */
-  -ms-transform: translate(-50%, -80%); /* IE 9 */
-  -o-transform: translate(-50%, -80%); /* Opera */
-  transform: translate(-50%, -80%);
-  border: none;
-}
-
-.fig_info {
-  width: 400px;
-}
-
-/* ============================================================= */
-/* API: Block */
-/* ============================================================= */
-
-.Block {
-  padding: 0;
-  color: #000000;
+  height: 100%;
+  z-index: 1;
   overflow: hidden;
-  word-wrap: break-word;
 }
 
+.row2 {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+} */
 
-.Block_log {
-  display: block;
+/* ============================================================= */
+/* col2 */
+/* ============================================================= */
+.col2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+	display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0;
+  row-gap: 0;
+}
+
+.col-L {
+  position: absolute;
+  top: 0;
+  left: 100px;
+  width: calc(50% - 100px);
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid gray;
+}
+
+.col-R {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: calc(50% + 1px);
+  /* right: 100px;
+  width: calc(50% - 100px); */
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-left: 1px solid white;
+}
+
+.footnote {
+  display: flex;
+  align-items: flex-end;
   position: absolute;
   top: 0;
   left: 0;
-  word-wrap: break-word;
-
-  font-family: Menlo;
-  font-size: 12px;
-  color: white;
+  width: 140px;
 }
+
+/* ============================================================= */
+/* Writing */
+/* ============================================================= */
+.writing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+
+/* ============================================================= */
+/* Zoom In/Out */
+/* ============================================================= */
+.writing img:not(.noZoom),
+.writing video:not(.noZoom) {
+  cursor: zoom-in;
+}
+
+.zoomed {
+  display: none;
+}
+
+.zoomed.active {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.85);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.zoomed img,
+.zoomed video {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+/* .zoomed {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1px);
+  z-index: 3;
+  cursor: zoom-out;
+}
+
+.zoomed img, 
+.zoomed video {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 9px rgba(0,0,0,0.5);
+}
+
+.zoomed.active {
+  display: flex;
+}
+
+.noZoom {
+  cursor: default;
+} */
