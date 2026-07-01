@@ -1,4 +1,52 @@
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:1236px) {
+  .col-L {
+    left: 50px;
+    width: calc(50% - 50px);
+  }
+
+  .writing {
+    width: 400px;
+  }
+
+}
+
+@media only screen and (max-width:933px) {
+  .col2 {
+    grid-template-columns: 1fr;
+  }
+
+  .col-L {
+    position: static;
+    left: 10px;
+    width: 100%;
+  }
+
+  .col-R {
+    position: static;
+    left: 10px;
+    right: auto;
+    width: 100%;
+  }
+
+}
+
+@media only screen and (max-width:600px) {
+  .writing {
+    width: 300px;
+  }
+
+  .menu-sub {
+    display: none;
+  }
+
+  #island,
+  #island_bg {
+    display: none;
+  }
+
+}
+
+/* @media only screen and (max-width:900px) {
   .col2 {
     grid-template-columns: 1fr;
   }
@@ -9,7 +57,7 @@
     display: none;
   }
 
-}
+} */
 
 @media only screen and (max-width:600px) {
   
