@@ -1,14 +1,13 @@
 let slug = 'fcumona-4ui';
-let page = 0; // Initialize the page number
-let totalPages = 1; // Initialize total pages
+let page = 0;
+let totalPages = 1;
 let buttonsPerPage = 1;
 
 window.onload = function() {
   renderTitle(slug);
   fetchTotalPages(slug).then(() => {
-    btnPages();         // 페이지 버튼만 보여주고
-    btnPageCounter();   // 이전/다음 버튼 설정만 함
-    // renderChannel(slug, page); 1 페이지 내용은 로드하지 않음
+    btnPages();
+    btnPageCounter();
   });
 };
 
@@ -18,9 +17,6 @@ let recordedChunks = [];
 
 document.getElementById("recordBtn").addEventListener("click", async () => {
   const recordWindow = window.open('', '', 'width=500,height=500');
-
-  // const content = document.querySelector('.ARENA-container').cloneNode(true);
-  // recordWindow.document.body.appendChild(content);
 
   try {
     const stream = await recordWindow.navigator.mediaDevices.getDisplayMedia({
@@ -34,7 +30,7 @@ document.getElementById("recordBtn").addEventListener("click", async () => {
 
     recorder = new MediaRecorder(stream, {
       mimeType: 'video/webm;codecs=vp9',
-      videoBitsPerSecond: 8000000 // 8Mbps
+      videoBitsPerSecond: 8000000 
     });
     recordedChunks = [];
 
@@ -43,7 +39,7 @@ document.getElementById("recordBtn").addEventListener("click", async () => {
     };
 
     recorder.onstop = () => {
-      // 녹화 저장
+
       const blob = new Blob(recordedChunks, { type: 'video/webm' });
       const url = URL.createObjectURL(blob);
 
@@ -56,42 +52,36 @@ document.getElementById("recordBtn").addEventListener("click", async () => {
       URL.revokeObjectURL(url);
       document.body.removeChild(a);
 
-      // 🔻 녹화 멈출 때 음악과 넘김도 멈춤
       const lalaland = document.getElementById('lalaland');
       if (lalaland) {
         lalaland.pause();
-        lalaland.currentTime = 0; // (선택) 처음부터 다시 시작하게
+        lalaland.currentTime = 0; 
       }
 
       isAutoFlipping = false;
-      
-      // ✅ 녹화 종료 후 playInfo 다시 보이기
+    
       document.body.style.cursor = '';
       infoText.innerHTML = `Burn my DVD through the <span style="color: yellow;">☀︎</span> light`;
       document.getElementById("playInfo").style.display = "block";
       document.getElementById("playInfoBg").style.display = "block";
 
-      // ✅ 페이지를 0으로 초기화
       page = 0;
       btnPages();
       btnPageCounter();
       renderChannel(slug, page);
 
-      recordWindow.close(); // 창 닫기
+      recordWindow.close();
     };
 
-    // ⬇️ infoText 업데이트 + 애니메이션 시작
     const infoText = document.getElementById("infoText");
     if (infoText) {
       infoText.innerHTML = `Getting sunlight for burning <span class="dot-animate"></span>`;
     }
 
     setTimeout(() => {
-      // 4초 뒤: playInfo 숨기고 첫 페이지 렌더링
       document.getElementById("playInfo").style.display = "none";
       document.getElementById("playInfoBg").style.display = "none";
 
-      // ✅ 또 5초 뒤에 녹화+음악+넘김 시작
       setTimeout(() => {
         recorder.start();
 
@@ -113,9 +103,8 @@ document.getElementById("recordBtn").addEventListener("click", async () => {
             btnPages();
             btnPageCounter();
 
-            let delay = 3000; // 기본값
+            let delay = 3000;
 
-            // delay 클래스 판별 로직 (btnPages와 동일)
             const delayElement = document.querySelector('[class*="delay"]');
             let delayClass;
 
@@ -144,20 +133,17 @@ document.getElementById("recordBtn").addEventListener("click", async () => {
 
           });
         }
-        autoFlipOnce(); // 자동 넘김 시작
+        autoFlipOnce(); 
 
-        // 3분 48초 뒤 자동 녹화 정지
         setTimeout(() => {
           recorder.stop();
         }, 228000);
 
-      }, 2000); // ▶️ 이게 "5초 후 시작" 지연
+      }, 2000);
 
-    }, 1900); // ⏱️ "4초 후 playInfo 숨기고 페이지 1부터 보여줌"
+    }, 1900); 
 
   } catch (err) {
-    // alert("Burning Canceled!");
-    // console.error(err);
     recordWindow.close();
   }
 });
@@ -174,13 +160,12 @@ function btnPageCounter() {
   document.getElementById('btn-N').disabled = (page === totalPages);
 }
 
-let isAutoFlipping = false; // 토글 상태 저장
+let isAutoFlipping = false;
 
 function btnPages() {
   const paginationContainer = document.querySelector('.btn-pages');
   paginationContainer.innerHTML = '';
 
-  // 항상 고정되는 play 버튼
   const playButton = document.createElement('button');
   playButton.id = 'play';
   // playButton.textContent = '☀︎';
@@ -195,21 +180,18 @@ function btnPages() {
       playButton.classList.add('playing');
       if (lalaland) lalaland.play();
 
-      // ✅ 재귀적으로 페이지 넘기기
       function autoFlipOnce() {
         page++;
         if (page > totalPages) {
           page = 1;
         }
 
-        // ✅ renderChannel이 끝난 뒤 .Block_video 유무 확인
         renderChannel(slug, page).then(() => {
           btnPages();
           btnPageCounter();
 
-          let delay = 3000; // 기본값
+          let delay = 3000; 
 
-          // .delay숫자 클래스를 가진 요소를 찾기
           const delayElement = document.querySelector('[class*="delay"]');
           let delayClass;
 
@@ -238,7 +220,7 @@ function btnPages() {
 
         });
       }
-      autoFlipOnce(); // 시작
+      autoFlipOnce();
 
     } else {
       isAutoFlipping = false;
@@ -249,7 +231,6 @@ function btnPages() {
 
   paginationContainer.appendChild(playButton);
 
-  // 페이지 숫자 버튼들
   const startPage = Math.max(1, page - Math.floor(buttonsPerPage / 2));
   const endPage = Math.min(totalPages, startPage + buttonsPerPage - 1);
 
@@ -391,7 +372,6 @@ function btnPages() {
     return 0;
   }
 
-  // 변환된 가사 배열
   const lyrics = rawLyrics.map(line => ({
     time: parseTime(line.time),
     text: line.text
@@ -412,7 +392,6 @@ function btnPages() {
     }
   });
 
-  // ✅ 음악이 종료되면 자동 넘김 멈추기
   lalaland.addEventListener("ended", () => {
     isAutoFlipping = false;
     playButton.classList.remove("playing");
@@ -435,7 +414,6 @@ function btnPages() {
 // =============================================================
 
 function renderTitle(slug) {
-  // Fetch the channel title from the Are.na API
   let url = `https://api.are.na/v2/channels/${slug}/collaborators`;
 
   fetch(url)
@@ -448,9 +426,9 @@ function fetchTotalPages(slug) {
   return fetch(url)
     .then(response => response.json())
     .then(data => {
-      let totalContents = data.length; // Get total contents
-      let per = 1; // Number of contents per page
-      totalPages = Math.ceil(totalContents / per); // Calculate total pages
+      let totalContents = data.length;
+      let per = 1; 
+      totalPages = Math.ceil(totalContents / per);
     });
 }
 
@@ -461,11 +439,6 @@ function fetchTotalPages(slug) {
 // =============================================================
 
 function renderChannel(slug, page) {
-  // Add a loading message
-  // let loading = `Loading...`;
-  // document.body.innerHTML = loading;      
-
-  // Fetch the channel data from the Are.na API
   let time = Date.now();
   let per = 1;
   let url = `https://api.are.na/v2/channels/${slug}/contents?t=${time}&direction=desc&sort=position&page=${page}&per=${per}`;
@@ -475,10 +448,7 @@ function renderChannel(slug, page) {
     .then(response => response.json())
     .then(channel => {
 
-      // Channel Info
-      // document.body.innerHTML = `
       let elements = `${channel.contents.map(block => {
-            // We are going to return HTML, mixed in with the data from the block.
             return `
               <div class="Block ${block.class}">
 
@@ -494,10 +464,8 @@ function renderChannel(slug, page) {
 
 
                 ${(() => {
-                  // Return a different bit of HTML, depending on what type of block it is
                   switch (block.class) {
 
-                    // mp4, mp3
                     case "Attachment":
                       return `
                       <img class="Block_img" src="${block.image.large.url}"/>
@@ -507,7 +475,6 @@ function renderChannel(slug, page) {
                       <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
 
-                    // basic: text
                     case "Text":
                       return `
                       <img class="Block_img" src="img/noise.gif">
@@ -518,7 +485,6 @@ function renderChannel(slug, page) {
                       <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
 
-                    // basic: image
                     case "Image":
                       return `
                       <img class="Block_img" src="${block.image.large.url}"/>
@@ -527,7 +493,6 @@ function renderChannel(slug, page) {
                       <audio autoplay src="sound/noise_short.mp3"></audio>
                       `;
                       
-                    // iframe: Youtube  
                     case "Media":
                       return `
                       <div class="Block_loop">
@@ -540,7 +505,6 @@ function renderChannel(slug, page) {
                       </div>
                       `;
 
-                    // website
                     case "Link":
                       return `
                       <img class="Block_img" src="${block.image.large.url}"/>
@@ -559,9 +523,8 @@ function renderChannel(slug, page) {
           }).join("")}`;
     
     let contents = document.getElementsByClassName("ARENA-container")[0];
-    contents.innerHTML = elements; // Clear existing content and add new content
+    contents.innerHTML = elements;
 
-    // 🔇 mute 설정
     if (document.querySelector('.mute')) {
       const video = document.querySelector('.Block_video');
       if (video) {
@@ -569,7 +532,6 @@ function renderChannel(slug, page) {
       }
     }
 
-    // ⏩ speedUp 설정
     if (document.querySelector('.speedUp')) {
       const video = document.querySelector('.Block_video');
       if (video) {
@@ -579,34 +541,3 @@ function renderChannel(slug, page) {
 
   })
 }
-
-
-//   "id": 76969,
-//   "title": "The Working Sheepdog ( Border Collies ) in training",
-//   "updated_at": "2020-04-07T21:59:29.806Z",
-//   "created_at": "2013-02-12T22:40:15.696Z",
-//   "state": "available",
-//   "comment_count": 0,
-//   "generated_title": "The Working Sheepdog ( Border Collies ) in training",
-//   "content_html": "",
-//   "description_html": "<p>Border Collie Collies working sheepdog Sheep dogs in training Scotland</p>",
-//   "visibility": "public",
-//   "content": "",
-//   "description": "Border Collie Collies working sheepdog Sheep dogs in training Scotland",
-//   "source": {},
-//   "image": {},
-//   "embed": {},
-//   "attachment": null,
-//   "metadata": null,
-//   "base_class": "Block",
-//   "class": "Media",
-//   "user": {},
-//   "position": 1,
-//   "selected": false,
-//   "connection_id": 716562,
-//   "connected_at": "2016-05-16T00:59:42.901Z",
-//   "connected_by_user_id": 128,
-//   "connected_by_username": "Chris Sherrón",
-//   "connected_by_user_slug": "chris-sherron"
-
-

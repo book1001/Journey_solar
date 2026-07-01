@@ -8,32 +8,6 @@ document.querySelectorAll("[data-include]").forEach(async el => {
 
 
 // ==============================================
-// Menu
-// ==============================================
-document.querySelectorAll("button[id^='page']").forEach(button => {
-  button.addEventListener("click", () => {
-    // 모든 페이지 숨기기
-    document.querySelectorAll(".page").forEach(p => p.style.display = "none");
-
-    // 모든 버튼에서 active 제거
-    document.querySelectorAll("button[id^='page']").forEach(b => b.classList.remove("active"));
-
-    // 버튼의 id에서 숫자 추출
-    const num = button.id.replace("page", ""); // 'page1' → '1'
-    
-    // 대응되는 페이지 보여주기
-    const pageEl = document.querySelector(".page" + num);
-    if (pageEl) {
-      pageEl.style.display = "block";
-    }
-
-    // 현재 클릭한 버튼 active 적용
-    button.classList.add("active");
-  });
-});
-
-
-// ==============================================
 // Zoom In/Out
 // ==============================================
 let zoomed = document.querySelector('.zoomed');
