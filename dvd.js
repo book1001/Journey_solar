@@ -46,7 +46,7 @@ document.getElementById("recordBtn").addEventListener("click", async () => {
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = 'sunburn-DVD.webm';
+      a.download = 'sunburnDVD.webm';
       document.body.appendChild(a);
       a.click();
       URL.revokeObjectURL(url);
